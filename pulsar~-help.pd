@@ -1,0 +1,148 @@
+#N canvas 0 0 1423 866 12;
+#X text 146 30 2020 Rodney DuPlessis;
+#X text 27 499 Inlet 1:;
+#X text 161 499 A message into this inlet changes the "Fundamental"
+parameter;
+#X text 27 570 Inlet 2:;
+#X text 161 570 A message into this inlet changes the "Formant" parameter
+;
+#X text 27 629 Inlet 3 (Sync):;
+#X text 27 709 Inlet 3 (Mask):;
+#X text 161 709 A list of numbers between 0 and 1 into this inlet will
+set a masking pattern. This effectively creates a repeating sequence
+modulating the amplitude of each pulsar. Example here:;
+#X text 161 629 A bang into this inlet will set the module to the beginning
+of the pulsar. You can use this to synchronize two or more pulsar modules.
+Example here:;
+#N canvas 956 34 452 840 Sync 0;
+#X obj 130 336 pulsar;
+#X obj 398 336 pulsar;
+#X floatatom 136 154 5 0 0 0 - - -, f 5;
+#X floatatom 215 154 5 0 0 0 - - -, f 5;
+#X obj 381 161 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 254 753 dac~;
+#X text 291 585 Turn up volume;
+#X obj 127 695 *~;
+#X obj 397 694 *~;
+#X obj 262 577 vsl 24 92 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X text 401 161 Synchronize pulsars manually;
+#X floatatom 670 190 5 0 0 0 - - -, f 5;
+#X obj 804 267 del;
+#X obj 804 240 expr 1000 / ($f1 * 2);
+#X obj 671 239 expr 1000 / ($f1);
+#X obj 671 264 del;
+#X text 20 154 set fundamental of both pulsar modules, f 16;
+#X text 254 154 set formant of both pulsar modules, f 14;
+#X text 715 142 You can also use "sync" to offset pulsar modules using
+delayed bangs (below). Try changing the fundamental of the pulsars
+using this number box. The two modules will be offset by half of a
+cycle.;
+#X text 27 27 The Sync Inlet;
+#X text 139 27 This example shows some examples of using the "Sync"
+inlet to synchronize multiple pulsar modules. The effect is only really
+noticable if the two modules setings are different (but fundamental
+should be the same). Try different formants or different wavefroms
+for example.;
+#X obj 23 412 closebang;
+#X msg 45 493 0;
+#X connect 0 0 7 0;
+#X connect 1 0 8 0;
+#X connect 2 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 1;
+#X connect 3 0 1 1;
+#X connect 4 0 0 2;
+#X connect 4 0 1 2;
+#X connect 7 0 5 0;
+#X connect 8 0 5 1;
+#X connect 9 0 7 1;
+#X connect 9 0 8 1;
+#X connect 11 0 13 0;
+#X connect 11 0 14 0;
+#X connect 11 0 0 0;
+#X connect 11 0 1 0;
+#X connect 12 0 1 2;
+#X connect 13 0 12 0;
+#X connect 14 0 15 0;
+#X connect 15 0 0 2;
+#X connect 21 0 22 0;
+#X connect 22 0 9 0;
+#X restore 370 666 pd Sync;
+#N canvas 15 34 688 817 Mask 0;
+#X obj 70 366 pulsar;
+#X obj 72 138 loadbang;
+#X msg 72 198 8;
+#X obj 70 775 dac~;
+#X text 117 610 Turn up volume;
+#X obj 70 717 *~;
+#X obj 88 602 vsl 24 92 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X msg 320 103 1;
+#X msg 154 195 200;
+#X text 361 150 This will silence every 2nd pulsar.;
+#X msg 331 150 1 0;
+#X msg 336 181 1 0.8 0.6 0.4 0.2 0;
+#X text 481 176 This 6-element list shows how values between 0 and
+1 can be used to partially mask pulsars.;
+#X text 450 228 Numbers outside of the range 0-1 are clipped to 0 and
+1;
+#X text 34 22 The Mask Inlet;
+#X msg 341 228 3 -5 -7 11 -13;
+#X text 153 22 The mask inlet takes a list and applies it as a sequence
+multiplying the amplitude of each pulsar by each successive list entry.
+1 is "on" 0 is "off" and anything in between reduces the amplitude.
+, f 68;
+#X obj 348 265 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 348 284 random 100;
+#X obj 348 308 / 100;
+#X obj 348 332 list cat;
+#X obj 346 377 print;
+#X text 365 263 accumulate a list of values between 0-1. Click the
+bang to add a value., f 72;
+#X text 356 97 This is effectively a single element list of the number
+1 There will be no masking. The Pulsar is "always on.";
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 1 0 8 0;
+#X connect 2 0 0 0;
+#X connect 5 0 3 0;
+#X connect 5 0 3 1;
+#X connect 6 0 5 1;
+#X connect 7 0 0 3;
+#X connect 8 0 0 1;
+#X connect 10 0 0 3;
+#X connect 11 0 0 3;
+#X connect 15 0 0 3;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 0 3;
+#X connect 20 0 21 0;
+#X restore 201 765 pd Mask;
+#X obj 24 126 cnv 15 680 339 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 190 189 pulsar;
+#X text 30 170 "Fundamental" controls the fundamental frequency of
+the pulsar \, the inverse of the pulsar period, f 22;
+#X text 259 131 "Formant" controls the frequency of the pulsaret \,
+the inverse of the pulsaret period., f 31;
+#X text 446 227 These are the default options for pulsaret envelopes.
+Try each one with the "View Envelope" window open if you want to see
+their shapes, f 36;
+#X text 30 276 These are the default pulsaret waveforms and an "Import"
+function to load arbitrary wav files as pulsarets., f 22;
+#X text 446 301 "Slope" only affects the Gauss and Expodec envelopes.
+For Gauss: raising the value narrows the gaussian curve. For Expodec:
+higher values gradually turn the envelope from linear to exponential.
+, f 35;
+#X text 26 100 You can control the module using the gui on the object
+or through the inlets (described below)., f 96;
+#X text 26 30 Pulsar~;
+#X text 26 70 This is a full implementation of Curtis Roads' (2000)
+Pulsar Synthesis., f 72;
+#X text 26 419 The buttons at the bottom open windows displaying the
+anatomy of the pulsar. If you're feeling brave \, you can draw the
+pulsaret and envelope shapes directly on the graphs., f 96;
