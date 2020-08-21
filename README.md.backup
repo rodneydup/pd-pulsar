@@ -4,6 +4,8 @@ An implementation of Pulsar Synthesis[^1] in Pure Data.
 
 Abstracting pulsar synthesis into an object in pure data expands the possibilities for controlling and experimenting with single or multiple simultaneous pulsar generators. It can be integrated into a complex Pure Data patch with potentially several pulsar~ objects. See the help patch for examples.
 
+
+
 ![](Pulsar~.png "This is what it looks like")
 
 ##Features:
