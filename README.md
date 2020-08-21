@@ -17,7 +17,9 @@ Abstracting pulsar synthesis into an object in pure data expands the possibiliti
 - "Mask" input that accepts a list of numbers between 0 and 1, playing pulsars with those amplitude values sequentially.<sup>3</sup>
 
 ## Installation
-No installation required, but you must have [Pure Data](https://puredata.info/) installed and put "pulsar~.pd" and "pulsar~-help.pd" in a folder where Pure Data looks for its objects. Help on this can be found here: https://puredata.info/docs/faq/how-do-i-install-externals-and-help-files
+No installation required, but you must have [Pure Data](https://puredata.info/) installed. 
+<br><br>
+[Download](https://github.com/rodneydup/pd-pulsar/archive/master.zip) this repository and put "pulsar~.pd" and "pulsar~-help.pd" in a folder where Pure Data looks for its objects. Help on this can be found here: https://puredata.info/docs/faq/how-do-i-install-externals-and-help-files
 
 Once the pulsar~ files are in the right directory, you will be able to create a pulsar~ object in any Pure Data patch by creating an object and typing pulsar~ in it. 
 
