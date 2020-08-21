@@ -10,7 +10,8 @@ Abstracting pulsar synthesis into an object in pure data expands the possibiliti
 
 - A GUI on the object itself as well as the ability to control various parameters through the control inlets.[^2] 
 - 5 basic waveforms included for the <i>pulsaret</i> in addition to the ability to import any arbitrary .wav file as the pulsaret.
-- 4 common Envelopes with a "Slope" variable that adjusts the width of the Gauss envelope and the exponential curve of the Expodec.
+- 4 common envelopes with a "Slope" variable that adjusts the width of the Gauss envelope and the exponential curve of the Expodec.
+- Draw a custom envelope shape or custom pulsaret shape on screen.
 - Visual displays of the shapes of the pulsaret, envelope, and overall pulsar.
 - "Sync" input that accepts a bang and resets the phase of the pulsar, allowing the ability to synchronize multiple pulsar objects.
 - "Mask" input that accepts a list of numbers between 0 and 1, playing pulsars with those amplitude values sequentially.[^3]}
